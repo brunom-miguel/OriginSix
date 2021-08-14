@@ -14,29 +14,174 @@ img {
   height: auto;
 }
 
-/*-=-=-= BASE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-
-/*-=-=-= ? -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+/*-=-=-= VARIABLES -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 :root {
+  /* elemento "paizão" */
+  /* var para tamanho height */
+  --header-height: 4.5rem;
+  /* var de cor*/
+  --hue: 159;
+  /* HSL color mode */
+  --base-color: hsl(var(--hue) 36% 57%);
+  --base-color-second: hsl(var(--hue) 65% 88%);
+  --base-color-alt: hsl(var(--hue) 57% 53%);
+  --title-color: hsl(var(--hue) 41% 10%);
+  --text-color: hsl(0 0% 46%);
+  --text-color-light: hsl(0 0 98%);
+  --body-color: hsl(0 0% 98%);
 }
 
+/*-=-=-= BASE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+/* definindo atributos padrão do "body"*/
+body {
+  font: 400 1rem 'DM Sans', sans-serif;
+  color: var(--text-color);
+  background: var(--body-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* definindo atributos padrão dos titulos h1 */
+h1 {
+  font: 700 1.875rem 'Poppins', sans-serif;
+  color: var(--title-color);
+  -webkit-font-smoothing: auto;
+}
+/* definindo atributos padrão dos botões com classe "button" */
+.button {
+  background: var(--base-color);
+  color: var(--text-color-light);
+  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 2rem;
+  border-radius: 0.25rem;
+  font: 500 1rem 'DM Sans', sans-serif;
+  transition: background 0.3s; /* transição aplicada junto com ":hover"*/
+}
+
+/* definindo efeitos visuais ao passar o mouse em cima do botão */
+.button:hover {
+  background: var(--base-color-alt);
+}
+
+/* inclusão de um divisor visual com cor gradiente */
+.divider-1 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 36%, 57%, 1) 0%,
+    hsla(var(--hue), 65%, 88%, 0.34) 100%
+  );
+}
 /*-=-=-= LAYOUT -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-.header {
-  height: 4.5rem;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-.logo {
-}
-
+/* definindo largura e margens da classe "conteiner" */
 .container {
   width: 100%;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
 
+/* classe para criar um "gap" entre os filhos do elemento */
+.grid {
+  display: grid;
+  gap: 2rem; /* da espaçamento automatico nos filhos */
+}
+
+/* espaçamento interno nas partes de cima e de baixo dos "sections"*/
+.section {
+  padding: 5rem 0;
+}
+
+/* incluindo uma linha na borda do "header" */
+.header {
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 2rem;
+  display: flex; /* o conteúdo interno do "header" fica flexível se adaptando */
+
+  /* fazendo o header ficar fixado */
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: var(--body-color);
+}
+
+/* definindo atributos da tag "nav" e disposição do logo e icone do menu*/
+nav {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* definindo letra e cor das letras do logo */
+.logo {
+  font: 700 1.31rem 'Poppins', sans-serif;
+  color: var(--title-color);
+}
+
+.logo span {
+  color: var(--base-color);
+}
+
+/* definindo margem para o main, para que o conteúdo não fique escondido atrás do header fixo */
+main {
+  margin-top: var(--header-height);
+}
+
 /*-=-=-= HOME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+#home {
+  overflow: hidden; /* significa "transbordar", com esse atributo ele "corta" o que transbordao limite do home */
+}
+
+/* resetando a margin da classe conteiner (para encontar na "parede") */
+#home .container {
+  margin: 0;
+}
+
+/* fazendo o quadrado colorido atrás da imagem */
+#home .image {
+  position: relative;
+}
+
+#home .image::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: var(--base-color-second);
+  position: absolute;
+  top: -16.8%;
+  left: 16.7%;
+  z-index: 0;
+}
+
+#home .image img {
+  position: relative;
+  right: 2.93rem;
+}
+
+/* borda arredondada em 2 elementos */
+#home .image img,
+#home .image::before {
+  border-radius: 0.25rem;
+}
+
+/* alinhando texto da classe "text" ao centro */
+#home .text {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  text-align: center;
+}
+
+/* aplicando margem de 1rem para baixo nos elementos h1 da classe "text" dentro da "home "*/
+#home .text h1 {
+  margin-bottom: 1rem;
+}
+
+/* aplicando margem de 2rem para baixo nos elementos p da classe "text" dentro da "home "*/
+#home .text p {
+  margin-bottom: 2rem;
+  max-width: 100%;
+}
