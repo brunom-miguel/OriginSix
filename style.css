@@ -20,9 +20,9 @@ img {
   /* var para tamanho height */
   --header-height: 4.5rem;
   /* var de cor*/
-  --hue: 159;
+  --hue: 330;
   /* HSL color mode */
-  --base-color: hsl(var(--hue) 36% 57%);
+  --base-color: hsl(var(--hue) 50% 70%);
   --base-color-second: hsl(var(--hue) 65% 88%);
   --base-color-alt: hsl(var(--hue) 57% 53%);
   --title-color: hsl(var(--hue) 41% 10%);
@@ -49,7 +49,7 @@ h1 {
 /* definindo atributos padrão dos botões com classe "button" */
 .button {
   background: var(--base-color);
-  color: var(--text-color-light);
+  color: var(--text-color);
   height: 3.5rem;
   display: inline-flex;
   align-items: center;
