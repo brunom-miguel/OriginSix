@@ -33,3 +33,20 @@ for (const link of links) {
     nav.classList.remove('show')
   })
 }
+
+/* MUDAR HEADER DA PÁGINA QUANDO DER SCROLL */
+
+const header = document.querySelector('#header')
+const navHeight = header.offsetHeight // offsetHeight = deslocamento do height/altura
+
+// adicionando o evento "scroll" na janela inteira (window)
+window.addEventListener('scroll', function () {
+  // checar se o scroll no eixo Y (vertical) da janela inteira (window) é maior ou igual à altura do header (navHeight)
+  if (window.scrollY >= navHeight) {
+    // scroll é maior que a altura do HEADER
+    header.classList.add('scroll') // se for maior, vai adicionar a classe ".scroll" no elemento header
+  } else {
+    // scroll é menor que a altura do HEADER
+    header.classList.remove('scroll') // se for menor, vai remover a classe ".scroll" no elemento header
+  }
+})

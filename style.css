@@ -22,7 +22,7 @@ img {
 :root {
   /* elemento "paizão" */
   /* var para tamanho height */
-  --header-height: 4.5rem;
+  --header-height: 3rem;
   /* var de cor*/
   --hue: 330;
   /* HSL color mode */
@@ -36,7 +36,11 @@ img {
 }
 
 /*-=-=-= BASE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-/* definindo atributos padrão do "body"*/
+/* definindo scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+/* definindo atributos padrão do "body" */
 body {
   font: 400 1rem 'DM Sans', sans-serif;
   color: var(--text-color);
@@ -109,6 +113,16 @@ body {
   margin-bottom: 1rem;
 }
 
+/* margem em baixo dos <header> dentro de classes ".section" */
+.section header {
+  margin-bottom: 4rem;
+}
+
+/* definição da cor do <strong> dentro do <header> dentro de classes ".section" */
+.section header strong {
+  color: var(--base-color);
+}
+
 /* incluindo uma linha na borda do "header" */
 #header {
   border-bottom: 1px solid #e4e4e4;
@@ -122,6 +136,23 @@ body {
   left: 0;
   z-index: 100;
   background-color: var(--body-color);
+  /* transição para a mudança de cor do header quando scroll */
+  transition: background 0.3s;
+}
+
+/* inclusão de sombra e mudança de cores do header ao scrollar */
+#header.scroll {
+  background: var(--base-color);
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+}
+
+#header.scroll .logo span {
+  color: white;
+}
+
+#header.scroll .icon-menu {
+  color: white;
 }
 
 /* definindo margem para o main, para que o conteúdo não fique escondido atrás do header fixo
@@ -138,7 +169,9 @@ main {
   color: var(--title-color);
 }
 
-.logo span {
+/* cor do <span> */
+.logo span,
+.section header span {
   color: var(--base-color);
 }
 
@@ -197,6 +230,9 @@ nav ul li a:hover::after {
 nav .menu {
   opacity: 0;
   visibility: hidden;
+  /* para fazer efeito do menu descendo */
+  top: -20rem;
+  transition: 0.2s;
 }
 
 /* --> MOSTRAR MENU <--
@@ -215,11 +251,19 @@ nav.show .menu {
   position: fixed;
   top: 0;
   left: 0;
-
   /* espaça os elementos ao longo da tela  */
   display: grid;
   /* alinha o conteúdo no centro da tela */
   place-content: center;
+}
+
+/* fazer com que o conteúdo (<ul>) fique desaparecido até clicar em alguma coisa */
+nav .menu ul {
+  display: none;
+}
+/* quando clicar em algo e o menu aparecer (".show" entra na <nav>), o display fica "grid" e o conteúdo aparece */
+nav.show .menu ul {
+  display: grid;
 }
 
 /* quando o <nav> estiver com a classe ".show", aumenta a distância entre os elementos dos filhos do elemento <ul> que tem a classe "grid" */
@@ -241,13 +285,18 @@ nav .icon-close {
   /* definindo posicionamento do "x" */
   position: absolute;
   right: 1.5rem;
+  /* ícone fica escondido lá em cima e desce até "top: 1.5rem" quando estiver com ".show" no <nav> */
+  top: -1.5rem;
   /* transição do "x" */
+  transition: 0.1s;
 }
 
 /* quando eu clicar no menu (que vai aparecer a classe "show" no <nav>) o "x" vai aparecer */
 nav.show div.icon-close {
   visibility: visible;
   opacity: 1;
+  /* ícone aparece na posição certa, para dar o efeito da transição */
+  top: 1.5rem;
 }
 
 /*-=-=-= HOME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -350,4 +399,40 @@ nav.show div.icon-close {
 #about .text {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+}
+
+/*-=-=-= SERVICES -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+/* aumentando distânciamento entre os cards */
+.cards.grid {
+  gap: 1.5rem;
+}
+
+/* definindo para as divs 
+  - padding
+  - leve box shadow
+  - borda inferior colorida
+  - borda arredondada nos cantos superiores
+  - texto alinhado ao centro
+  */
+.card {
+  padding: 3.625rem 2rem;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+  border-bottom: 0.25rem solid var(--base-color);
+  border-radius: 0.25rem 0.25rem 0 0;
+  text-align: center;
+}
+
+/* definindo display do tipo block para ocupar a linha toda e definir seu tamanho
+- geralmente usamos a tag <i> quando queremos colocar "ícones"
+*/
+.card i {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: 5rem;
+  color: var(--base-color);
+}
+
+.card .title {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
 }
