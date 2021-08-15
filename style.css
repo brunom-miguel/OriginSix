@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+ul {
+  list-style: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -139,6 +143,40 @@ nav ul li {
   text-align: center;
 }
 
+/* define transição de 0.2 segundos na cor */
+nav ul li a {
+  transition: color 0.2s;
+  position: relative;
+}
+
+/* muda cor texto ao passar mouse */
+nav ul li a:hover {
+  color: var(--base-color);
+}
+
+/* criando linha embaixo dos elementos:
+  - começando com largura = 0
+*/
+nav ul li a::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: var(--base-color);
+
+  /* vai ter posicionamento absoluto ao próximo pai que tiver position:relative (que no caso é o nav ul li a)
+  - com isso, ele já vai se enquadrar no tamanho da largura do elemento pai (relative )*/
+  position: absolute;
+  left: 0;
+  bottom: -1.5rem;
+  /* criando transição para a linha */
+  transition: width 0.2s;
+}
+
+/* quando passa o mouse a largura fica = 100% */
+nav ul li a:hover::after {
+  width: 100%;
+}
+
 /* deixar a classe ".menu" oculta:
   - opacity= elemento está na tela, mas transparente
   - visibility: hidden= elemento está invisível */
@@ -163,6 +201,11 @@ nav.show .menu {
   position: fixed;
   top: 0;
   left: 0;
+
+  /* espaça os elementos ao longo da tela  */
+  display: grid;
+  /* alinha o conteúdo no centro da tela */
+  place-content: center;
 }
 
 /* quando o <nav> estiver com a classe ".show", aumenta a distância entre os elementos dos filhos do elemento <ul> que tem a classe "grid" */
