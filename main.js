@@ -5,7 +5,7 @@
 /* ABRE E FECHA MENU QUANDO CLICAR NO ICONE*/
 
 // fazendo JS procurar o seletor "#header nav" e colocar dentro da constante "nav"
-const nav = document.querySelector('header nav')
+const nav = document.querySelector('#header nav')
 // JS procura TODOS os seletor ".toggle" dentro do <nav> e coloca dentro da constante "toggle"
 const toggle = document.querySelectorAll('nav .toggle') //tem 2 elementos
 

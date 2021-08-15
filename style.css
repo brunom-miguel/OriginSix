@@ -73,8 +73,17 @@ body {
   height: 1px;
   background: linear-gradient(
     270deg,
-    hsla(var(--hue), 36%, 57%, 1) 0%,
-    hsla(var(--hue), 65%, 88%, 0.34) 100%
+    hsla(var(--hue), 36%, 57%, 1),
+    hsla(var(--hue), 65%, 88%, 0.34)
+  );
+}
+
+.divider-2 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 65%, 88%, 0.34),
+    hsla(var(--hue), 36%, 57%, 1)
   );
 }
 /*-=-=-= LAYOUT -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -95,8 +104,13 @@ body {
   padding: 5rem 0;
 }
 
+/* todos os ".title que estão dentro dos ".section" receberão uma margem no bootom */
+.section .title {
+  margin-bottom: 1rem;
+}
+
 /* incluindo uma linha na borda do "header" */
-.header {
+#header {
   border-bottom: 1px solid #e4e4e4;
   margin-bottom: 2rem;
   display: flex; /* o conteúdo interno do "header" fica flexível se adaptando */
@@ -296,6 +310,12 @@ nav.show div.icon-close {
 /*-=-=-= ABOUT -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 /* resetando a margin da classe conteiner (para encostar na "parede") */
+
+/* background da section "#about" */
+#about {
+  background-color: white;
+}
+
 #about .container {
   margin: 0;
 }
