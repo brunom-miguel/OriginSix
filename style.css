@@ -242,7 +242,7 @@ nav.show div.icon-close {
   overflow: hidden; /* significa "transbordar", com esse atributo ele "corta" o que transbordao limite do home */
 }
 
-/* resetando a margin da classe conteiner (para encontar na "parede") */
+/* resetando a margin da classe conteiner (para encostar na "parede") */
 #home .container {
   margin: 0;
 }
@@ -263,6 +263,7 @@ nav.show div.icon-close {
   z-index: 0;
 }
 
+/* dando "margem" lateral para a imagem */
 #home .image img {
   position: relative;
   right: 2.93rem;
@@ -290,4 +291,43 @@ nav.show div.icon-close {
 #home .text p {
   margin-bottom: 2rem;
   max-width: 100%;
+}
+
+/*-=-=-= ABOUT -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+/* resetando a margin da classe conteiner (para encostar na "parede") */
+#about .container {
+  margin: 0;
+}
+
+/* fazendo o quadrado colorido atrás da imagem */
+#about .image {
+  position: relative;
+}
+
+#about .image::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: var(--base-color-second);
+  position: absolute;
+  top: -8.3%;
+  left: -33%;
+  z-index: 0;
+}
+
+#about .image img {
+  position: relative;
+}
+
+/* borda arredondada em 2 elementos */
+#about .image img,
+#about .image::before {
+  border-radius: 0.25rem;
+}
+
+/* alinhando texto da classe "text" ao centro */
+#about .text {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
