@@ -213,6 +213,29 @@ nav.show ul.grid {
   gap: 4rem;
 }
 
+/* TOGGLE MENU -> LIGA/DESLIGA */
+/* definindo cor do icone e tamanho */
+.toggle {
+  color: var(--base-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+nav .icon-close {
+  /* a <div> com class "icon-close" (que é o "x") começa escondido */
+  visibility: hidden;
+  opacity: 0;
+  /* definindo posicionamento do "x" */
+  position: absolute;
+  right: 1.5rem;
+  /* transição do "x" */
+}
+
+/* quando eu clicar no menu (que vai aparecer a classe "show" no <nav>) o "x" vai aparecer */
+nav.show div.icon-close {
+  visibility: visible;
+  opacity: 1;
+}
+
 /*-=-=-= HOME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 #home {
