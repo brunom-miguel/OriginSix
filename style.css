@@ -41,7 +41,7 @@ body {
 }
 
 /* definindo atributos padrão dos titulos h1 */
-h1 {
+.title {
   font: 700 1.875rem 'Poppins', sans-serif;
   color: var(--title-color);
   -webkit-font-smoothing: auto;
@@ -76,7 +76,6 @@ h1 {
 /*-=-=-= LAYOUT -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 /* definindo largura e margens da classe "conteiner" */
 .container {
-  width: 100%;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
@@ -107,14 +106,14 @@ h1 {
   background-color: var(--body-color);
 }
 
-/* definindo atributos da tag "nav" e disposição do logo e icone do menu*/
-nav {
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* definindo margem para o main, para que o conteúdo não fique escondido atrás do header fixo
+- cada 16px = 1rem 
+- definindo com cálculo, somando a altura do header/nav com a distância entre o início da imagem e o fim do header */
+main {
+  margin-top: calc(var(--header-height) + 2rem);
 }
 
+/*-=-=-= LOGO -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 /* definindo letra e cor das letras do logo */
 .logo {
   font: 700 1.31rem 'Poppins', sans-serif;
@@ -125,9 +124,50 @@ nav {
   color: var(--base-color);
 }
 
-/* definindo margem para o main, para que o conteúdo não fique escondido atrás do header fixo */
-main {
-  margin-top: var(--header-height);
+/*-=-=-= NAVIGATION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+/* definindo atributos da tag "nav" e disposição do logo e icone do menu*/
+nav {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* alinhamento do texto ao centro */
+nav ul li {
+  text-align: center;
+}
+
+/* deixar a classe ".menu" oculta:
+  - opacity= elemento está na tela, mas transparente
+  - visibility: hidden= elemento está invisível */
+nav .menu {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* --> MOSTRAR MENU <--
+quando <nav> estiver com a classe ".show", procura o ".menu" lá dentro */
+nav.show .menu {
+  opacity: 1;
+  visibility: visible;
+
+  background: var(--body-color);
+
+  /* 100vh = 100% da altura do dispositivo */
+  height: 100vh;
+  /* 100vw = 100% da largura do dispositivo */
+  width: 100vw;
+  /* fica fixo na página toda na posição "top: 0" e "left: 0" */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* quando o <nav> estiver com a classe ".show", aumenta a distância entre os elementos dos filhos do elemento <ul> que tem a classe "grid" */
+nav.show ul.grid {
+  gap: 4rem;
 }
 
 /*-=-=-= HOME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
