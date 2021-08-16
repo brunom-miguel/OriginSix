@@ -26,9 +26,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-phone:before {
-  content: '\e900';
-}
 .icon-bite_cake_christmas_cookie_seet_icon:before {
   content: '\e901';
 }

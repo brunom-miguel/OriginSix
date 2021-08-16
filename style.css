@@ -64,12 +64,14 @@ body {
   padding: 0 2rem;
   border-radius: 0.25rem;
   font: 500 1rem 'DM Sans', sans-serif;
-  transition: background 0.3s; /* transição aplicada junto com ":hover"*/
+  transition: 0.3s; /* transição aplicada junto com ":hover"*/
 }
 
 /* definindo efeitos visuais ao passar o mouse em cima do botão */
 .button:hover {
   background: var(--base-color-alt);
+  color: rgb(221, 221, 221);
+  font-size: 1.1rem;
 }
 
 /* inclusão de um divisor visual com cor gradiente */
@@ -171,7 +173,7 @@ main {
 
 /* cor do <span> */
 .logo span,
-.section header span {
+.section strong {
   color: var(--base-color);
 }
 
@@ -457,7 +459,6 @@ nav.show div.icon-close {
 
 /* padding, sombra e border-radius da parte da citação */
 #testimonials blockquote {
-  margin: 0.25rem 0.5rem;
   padding: 2rem;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
   border-radius: 0.25rem;
@@ -515,6 +516,47 @@ nav.show div.icon-close {
   padding: 4rem 1rem;
 }
 
+.swiper-pagination-bullet {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
 .swiper-pagination-bullet-active {
   background-color: var(--base-color);
+}
+
+/*-=-=-= CONTATOS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+/* aumentando o espaçamento dos filhos padrão da classe ".grid" */
+#contact .grid {
+  gap: 4rem;
+}
+/* alinhando texto do titulo ao centro */
+#contact .title {
+  text-align: center;
+}
+
+/* aumentando margem de baixo do texto para afastar do botão */
+#contact .text p {
+  margin-bottom: 2rem;
+}
+
+/* estilizando icone do whatsapp */
+#contact .button i,
+#contact ul li i {
+  font-size: 1.5rem;
+  margin-right: 0.625rem;
+}
+
+/* espaçamento para os itens da lista */
+#contact ul.grid {
+  gap: 2rem;
+}
+
+#contact ul li {
+  display: flex;
+  align-items: center;
+}
+
+#contact ul li i {
+  color: var(--base-color);
 }
