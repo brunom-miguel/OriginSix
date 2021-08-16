@@ -296,7 +296,7 @@ nav.show div.icon-close {
   visibility: visible;
   opacity: 1;
   /* ícone aparece na posição certa, para dar o efeito da transição */
-  top: 1.5rem;
+  top: 1rem;
 }
 
 /*-=-=-= HOME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -435,4 +435,86 @@ nav.show div.icon-close {
 .card .title {
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
+}
+
+/*-=-=-= TESTIMONIALS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+/* cor de fundo da div */
+#testimonials {
+  background-color: white;
+}
+
+#testimonials .container {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#testimonials header {
+  text-align: center;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-bottom: 0;
+}
+
+/* padding, sombra e border-radius da parte da citação */
+#testimonials blockquote {
+  margin: 0.25rem 0.5rem;
+  padding: 2rem;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 0.25rem;
+}
+
+/* ajustes deposition e indentação do texto do <p> */
+#testimonials blockquote p {
+  /* position: relative -> pq o <span> está com position:absolute em relação ao <p> */
+  position: relative;
+  /* botando o inicio do texto <p> mais para a direita */
+  text-indent: 1.875rem;
+  /* margem do texto (<p>) em relação à <div> de baixo (nome e foto) */
+  margin-bottom: 1.5rem;
+
+  color: var(--title-color);
+}
+
+#testimonials blockquote p span {
+  /* aumento e estilização do "quote" */
+  font: 700 2.5rem serif;
+  /* position:absolute -> para poder mexer na posição */
+  position: absolute;
+  top: -0.375rem;
+  left: -1.875rem;
+  color: var(--base-color);
+}
+
+/* 
+  - cite: caixa que está contendo a imagem (<img>) e o texto (nome da pessoa)
+*/
+#testimonials cite {
+  display: flex;
+  /* move texto e imagem para o centro da caixa "<cite>" */
+  align-items: center;
+  /* o <cite> coloca o texto de forma padrão em "italic" */
+  font-style: normal;
+}
+
+/* ajuste de tamanho da imagem */
+#testimonials cite img {
+  /* tamanho */
+  width: 2rem;
+  height: 2rem;
+  /* object-fit -> explicação no doc anotacoes-gerais.md */
+  object-fit: cover;
+  /* cria uma "máscara" circular na imagem */
+  clip-path: circle();
+  /* margem para afastar a imagem do nome */
+  margin-right: 0.5rem;
+}
+
+/* SWIPER */
+.swiper-slide {
+  height: auto;
+  padding: 4rem 1rem;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--base-color);
 }

@@ -50,3 +50,13 @@ window.addEventListener('scroll', function () {
     header.classList.remove('scroll') // se for menor, vai remover a classe ".scroll" no elemento header
   }
 })
+
+/* TESTIMONIALS CAROUSEL SLIDER SWIPER */
+const swiper = new Swiper('.swiper-container', {
+  slidesPerView: 1, // quantos slides quero ver
+  pagination: {
+    el: '.swiper-pagination'
+  },
+  mousewheel: true, // quando rodar o scroll do mouse
+  keyboard: true // quando operar com os teclados
+})

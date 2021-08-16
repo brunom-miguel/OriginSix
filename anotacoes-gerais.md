@@ -129,3 +129,18 @@ main .section .container .text {
 No entanto, se utilizarmos `display: inline-block`, o elemento tem comportamento de `inline` respeitando o limite do seu conteúdo, mas conseguimos (com o `block`) atribuir alturas e larguras que quisermos. Mas com o `display: inline-block` não consigo alinhar o elemento no centro.
 
 Já com o `display: inline-flex`, além de conseguirmos as mesmas atribuições de altura e largura do `display: inline-block`, conseguimos alinhar o elemento ao centro.
+
+## Object-fit
+
+### `object-fit: cover`
+
+Se usarmos `object-fit: cover;` a imagem mantém sua proporção e preenche a dimensão dada. A imagem será cortada para caber.
+
+### `object-fit: contain`
+
+Se usarmos `object-fit: contain;` a imagem mantém sua proporção, mas é redimensionada para se encaixar dentro da dimensão estabelecida.
+
+### `object-fit: fill`
+
+Se usarmos `object-fit: fill;` a imagem é redimensionada para preencher a dimensão dada. Se necessário, a imagem será *esticada* ou *espremida* para caber.
+
