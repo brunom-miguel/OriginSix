@@ -35,12 +35,10 @@ for (const link of links) {
 }
 
 /* MUDAR HEADER DA PÁGINA QUANDO DER SCROLL */
-
-const header = document.querySelector('#header')
-const navHeight = header.offsetHeight // offsetHeight = deslocamento do height/altura
-
-// adicionando o evento "scroll" na janela inteira (window)
-window.addEventListener('scroll', function () {
+// function
+function changeHeaderWhenScroll() {
+  const header = document.querySelector('#header')
+  const navHeight = header.offsetHeight // offsetHeight = deslocamento do height/altura
   // checar se o scroll no eixo Y (vertical) da janela inteira (window) é maior ou igual à altura do header (navHeight)
   if (window.scrollY >= navHeight) {
     // scroll é maior que a altura do HEADER
@@ -49,7 +47,7 @@ window.addEventListener('scroll', function () {
     // scroll é menor que a altura do HEADER
     header.classList.remove('scroll') // se for menor, vai remover a classe ".scroll" no elemento header
   }
-})
+}
 
 /* TESTIMONIALS CAROUSEL SLIDER SWIPER */
 const swiper = new Swiper('.swiper-container', {
@@ -75,6 +73,30 @@ scrollReveal.reveal(
   #services header, #services .card,
   #testimonials header, #testimonials .testimonials,
   #contact .text, #contact .links
+  footer .brand, footer .social
   `,
   { interval: 100 }
 )
+
+// BOTÃO 'BACK TO TOP'
+
+function backToTop() {
+  //procuro a classe '.back-to-top' e coloco na const 'backToTopButton'
+  const backToTopButton = document.querySelector('.back-to-top')
+  // se o eixo Y na PAGINA for maior que 560
+  if (window.scrollY >= 560) {
+    // adiciona classe '.show' na lista de classe do 'backToTopButton'
+    backToTopButton.classList.add('show')
+  } else {
+    // senão, tira
+    backToTopButton.classList.remove('show')
+  }
+}
+
+/* WHEN SCROLL */
+
+// adiciono evento de 'scroll' passando todas as funções que são de 'scroll'
+window.addEventListener('scroll', function () {
+  changeHeaderWhenScroll()
+  backToTop()
+})

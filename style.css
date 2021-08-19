@@ -31,7 +31,7 @@ img {
   --base-color-alt: hsl(var(--hue) 57% 53%);
   --title-color: hsl(var(--hue) 41% 10%);
   --text-color: hsl(0 0% 46%);
-  --text-color-light: hsl(0 0 98%);
+  --text-color-light: hsl(0 0% 98%);
   --body-color: hsl(0 0% 98%);
 }
 
@@ -175,6 +175,11 @@ main {
 .logo span,
 .section strong {
   color: var(--base-color);
+}
+
+/* quando a logo tiver a classe ".logo-alt", ela vai receber uma cor alternativa*/
+.logo-alt span {
+  color: var(--body-color);
 }
 
 /*-=-=-= NAVIGATION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -559,4 +564,94 @@ nav.show div.icon-close {
 
 #contact ul li i {
   color: var(--base-color);
+}
+
+/*-=-=-= FOOTER -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+/* background do footer */
+footer {
+  background-color: var(--base-color);
+}
+
+/* mudando display do <a> (".logo") para "inlin-block" para poder atribuir uma margem */
+footer .logo {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+/* mudando cor dos <p> da primeira <div> do <footer> e distanciando um pouco mais os <p>s */
+footer .brand p {
+  color: var(--text-color-light);
+  margin-bottom: 0.75rem;
+}
+
+/* ajustando tamanho do <i> e a cor dele */
+footer i {
+  font-size: 1.5rem;
+  color: var(--text-color-light);
+}
+
+footer .social a {
+  margin-right: 2rem;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+footer .social a:hover {
+  transform: translateY(-8px);
+}
+
+footer .social a:hover i {
+  transition: 0.3;
+}
+
+/* classe para o botão de "voltar ao topo" */
+.back-to-top {
+  background-color: var(--base-color);
+  color: var(--text-color-light);
+  /* posicionamento para ficar fixo na página */
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  /* espaçamento interno maior */
+  padding: 0.7rem;
+  /* arredondar os cantos */
+  clip-path: circle();
+
+  font-size: 1rem;
+  line-height: 0;
+  /* escondendo */
+  visibility: hidden;
+  opacity: 0;
+  /* dando uma transição ao aparecer e tudo mais */
+  transition: 0.3s;
+  /* transform com translate, que permite mexer nos 'eixos', nesse caso vamos mexer apenas o Y (pq queremos trazer de baixo para cima) 
+  
+  com: translate(100%) ele pega o tamanho do botão e mexe 100% do tamanho dele no eixo Y 
+  */
+  transform: translateY(100%);
+}
+
+.back-to-top.show {
+  visibility: visible;
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+/* responsivo */
+
+/* -=-=-=-=-=- MEDIA QUERIES -=-=-=-=-=- */
+/* extra large devides: 1200 > */
+@media (min-width: 1200px) {
+}
+/* large devides: 1023 > */
+@media (min-width: 1023px) {
+}
+/* extra large devides: 992 > */
+@media (min-width: 992px) {
+}
+
+/* medium devides: 767 > -> geralmente tablets */
+@media (min-width: 767px) {
 }
