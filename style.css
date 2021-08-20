@@ -33,6 +33,13 @@ img {
   --text-color: hsl(0 0% 46%);
   --text-color-light: hsl(0 0% 98%);
   --body-color: hsl(0 0% 98%);
+
+  /* FONTS */
+  --title-font-size: 1.875rem;
+  --subtitle-font-size: 1rem;
+
+  --title-font: 'Poppins', sans-serif;
+  --body-font: 'DM Sans', sans-serif;
 }
 
 /*-=-=-= BASE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -42,7 +49,7 @@ html {
 }
 /* definindo atributos padrão do "body" */
 body {
-  font: 400 1rem 'DM Sans', sans-serif;
+  font: 400 1rem var(--body-font);
   color: var(--text-color);
   background: var(--body-color);
   -webkit-font-smoothing: antialiased;
@@ -50,7 +57,7 @@ body {
 
 /* definindo atributos padrão dos titulos h1 */
 .title {
-  font: 700 1.875rem 'Poppins', sans-serif;
+  font: 700 var(--title-font-size) var(--title-font);
   color: var(--title-color);
   -webkit-font-smoothing: auto;
 }
@@ -63,7 +70,7 @@ body {
   align-items: center;
   padding: 0 2rem;
   border-radius: 0.25rem;
-  font: 500 1rem 'DM Sans', sans-serif;
+  font: 500 1rem var(--body-font);
   transition: 0.3s; /* transição aplicada junto com ":hover"*/
 }
 
@@ -71,7 +78,6 @@ body {
 .button:hover {
   background: var(--base-color-alt);
   color: rgb(221, 221, 221);
-  font-size: 1.1rem;
 }
 
 /* inclusão de um divisor visual com cor gradiente */
@@ -107,12 +113,16 @@ body {
 
 /* espaçamento interno nas partes de cima e de baixo dos "sections"*/
 .section {
-  padding: 5rem 0;
+  padding: calc(5rem + var(--header-height)) 0;
 }
 
 /* todos os ".title que estão dentro dos ".section" receberão uma margem no bootom */
 .section .title {
   margin-bottom: 1rem;
+}
+
+.section .subtitle {
+  font-size: var(--subtitle-font-size);
 }
 
 /* margem em baixo dos <header> dentro de classes ".section" */
@@ -144,13 +154,7 @@ body {
 
 /* inclusão de sombra e mudança de cores do header ao scrollar */
 #header.scroll {
-  background: var(--base-color);
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s;
-}
-
-#header.scroll .logo span {
-  color: white;
 }
 
 #header.scroll .icon-menu {
@@ -160,14 +164,11 @@ body {
 /* definindo margem para o main, para que o conteúdo não fique escondido atrás do header fixo
 - cada 16px = 1rem 
 - definindo com cálculo, somando a altura do header/nav com a distância entre o início da imagem e o fim do header */
-main {
-  margin-top: calc(var(--header-height) + 2rem);
-}
 
 /*-=-=-= LOGO -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 /* definindo letra e cor das letras do logo */
 .logo {
-  font: 700 1.31rem 'Poppins', sans-serif;
+  font: 700 1.31rem var(--title-font);
   color: var(--title-color);
 }
 
@@ -204,7 +205,8 @@ nav ul li a {
 }
 
 /* muda cor texto ao passar mouse */
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a.active {
   color: var(--base-color);
 }
 
@@ -221,13 +223,14 @@ nav ul li a::after {
   - com isso, ele já vai se enquadrar no tamanho da largura do elemento pai (relative )*/
   position: absolute;
   left: 0;
-  bottom: -1.5rem;
+  bottom: -0.85rem;
   /* criando transição para a linha */
   transition: width 0.2s;
 }
 
 /* quando passa o mouse a largura fica = 100% */
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a.active::after {
   width: 100%;
 }
 
@@ -573,6 +576,10 @@ footer {
   background-color: var(--base-color);
 }
 
+footer.section {
+  padding: 4rem 0;
+}
+
 /* mudando display do <a> (".logo") para "inlin-block" para poder atribuir uma margem */
 footer .logo {
   display: inline-block;
@@ -591,8 +598,14 @@ footer i {
   color: var(--text-color-light);
 }
 
+/* alinhando grid para ficar em colunas (um do lado do outro) */
+footer .social {
+  grid-auto-flow: column;
+  /* encaixa o espaço "extra" que o grid gera no tamanho do conteúdo (nesse caso os ícones das redes sociais */
+  width: fit-content;
+}
+
 footer .social a {
-  margin-right: 2rem;
   display: inline-block;
   transition: 0.3s;
 }
@@ -644,12 +657,149 @@ footer .social a:hover i {
 /* -=-=-=-=-=- MEDIA QUERIES -=-=-=-=-=- */
 /* extra large devides: 1200 > */
 @media (min-width: 1200px) {
+  /* 
+    - com max-width defino o MÁXIMO da largura que quero de conteudo no nav
+    - com margin-left/margin-right faço com que o conteúdo fique sempre alinhado no meio
+  */
+  /* reusable classes */
+  .container {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* tem diferença da distancia do padding em relação ao mobile */
+  .section {
+    padding: 10rem 0;
+  }
+  /* limitando tamanho e corrigindo alinhamento do header das sections que possuem um */
+  .section header,
+  #testimonials header {
+    max-width: 32rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .button {
+    height: 3.125rem;
+  }
+
+  /* navigation */
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  nav .menu ul {
+    display: flex;
+    gap: 2rem; /* gap destravado com o uso do display: flex */
+  }
+
+  nav .menu ul li a.title {
+    font: 400 1rem var(--body-font);
+    /* fica com a fonte mais fininha ainda */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav .menu ul li a.title.active {
+    font-weight: bold;
+    /* o bold fica mais bold */
+    -webkit-font-smoothing: auto;
+  }
+
+  nav .icon-menu {
+    display: none;
+  }
+
+  /* layout */
+  main {
+    margin-top: var(--header-height);
+  }
+
+  /* HOME */
+
+  /* faz as <divs> dentro do container ficarem lado a lado com seu tamanho */
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  /* muda a ordem dos elementos que estão dentro de um pai=grid */
+  #home .image {
+    order: 1; /* order só funciona pq .image é filho de 'grid' */
+  }
+
+  #home .text {
+    order: 0; /* order só funciona pq .text é filho de 'grid' */
+    max-width: 24rem;
+    text-align: left;
+  }
+
+  /* about */
+  #about .container {
+    /* corrigindo maring com 'auto' para esquerda e direita */
+    margin: 0 auto;
+    grid-auto-flow: column;
+  }
+
+  /* services */
+  .cards {
+    /* '.cards' já está com com 'grid', o que libera o:
+        - grid-template-columns, que divide os filhos no decorrer da linha conforme especificamos:
+          - fr = fractions = peso na distribuição
+          - cada 'fr' que colocarmos vai dividir nessa quantidade de colunas
+    */
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /* corrigindo espaçamento interno */
+  .card {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  /* testimonials */
+  #testimonials .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* contact */
+  #contact .container {
+    grid-auto-flow: column;
+    align-items: center;
+  }
+
+  #contact .text {
+    max-width: 25rem;
+  }
+
+  /* footer */
+  footer .section {
+    padding: 3.75rem 0;
+  }
+
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .logo {
+    font-size: 2.25rem;
+  }
 }
 /* large devides: 1023 > */
 @media (min-width: 1023px) {
 }
 /* extra large devides: 992 > */
 @media (min-width: 992px) {
+  :root {
+    --title-font-size: 2.25rem;
+    --subtitle-font-size: 1.25rem;
+  }
 }
 
 /* medium devides: 767 > -> geralmente tablets */

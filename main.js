@@ -35,10 +35,10 @@ for (const link of links) {
 }
 
 /* MUDAR HEADER DA PÁGINA QUANDO DER SCROLL */
+const header = document.querySelector('#header')
+const navHeight = header.offsetHeight // offsetHeight = deslocamento do height/altura
 // function
 function changeHeaderWhenScroll() {
-  const header = document.querySelector('#header')
-  const navHeight = header.offsetHeight // offsetHeight = deslocamento do height/altura
   // checar se o scroll no eixo Y (vertical) da janela inteira (window) é maior ou igual à altura do header (navHeight)
   if (window.scrollY >= navHeight) {
     // scroll é maior que a altura do HEADER
@@ -56,7 +56,12 @@ const swiper = new Swiper('.swiper-container', {
     el: '.swiper-pagination'
   },
   mousewheel: true, // quando rodar o scroll do mouse
-  keyboard: true // quando operar com os teclados
+  keyboard: true, // quando operar com os teclados
+  breakpoints: {
+    767: {
+      slidesPerView: 2
+    }
+  }
 })
 
 /* SCROLLREVEAL: mostra elementos quando der scroll na página */
@@ -79,10 +84,9 @@ scrollReveal.reveal(
 )
 
 // BOTÃO 'BACK TO TOP'
-
+//procuro a classe '.back-to-top' e coloco na const 'backToTopButton'
+const backToTopButton = document.querySelector('.back-to-top')
 function backToTop() {
-  //procuro a classe '.back-to-top' e coloco na const 'backToTopButton'
-  const backToTopButton = document.querySelector('.back-to-top')
   // se o eixo Y na PAGINA for maior que 560
   if (window.scrollY >= 560) {
     // adiciona classe '.show' na lista de classe do 'backToTopButton'
@@ -93,10 +97,50 @@ function backToTop() {
   }
 }
 
+/* MENU ATIVO CONFORME A SESSÃO VISÍVEL NA PÁGINA */
+// 'section[id]' = sections que tenham algum ID = '<section id='...'>
+const sections = document.querySelectorAll('main section[id]')
+
+function activateMenuAtCurrentSection() {
+  //window.pageYOffSet = "pega da pagina o deslocamento do eixo Y"
+  /*além disso, vai pegar todo o tamanho da página (window.innerHeight) e divide por 8 (8 pedaços) */
+
+  // o 'checkpoint' é o calculo do deslocamento do eixo Y somando com a divisão do tamanho da página por 8 multiplicado por 4
+  //vai ver qual é o checkpoint do momento
+
+  //(window.innerHeight / 8) * 4 = altura da pagina divida por 8 + 4, isso da, mais ou menos, na metade da página... então o checkpoint é na metade da pagina
+  const checkpoint = window.pageYOffset + (window.innerHeight / 8) * 4
+
+  // para cada sessão de sessões
+  for (const section of sections) {
+    const sectionTop = section.offsetTop //offSetTop = deslocamento do topo
+    const sectionHeight = section.offsetHeight //offSetHeight = altura (seria deslocamento, mas é altura)
+    //como 'section' faz referencia a um elemento html, posso chamar uma função para pegar um atributo dessa tag (que no caso é o 'id')
+    const sectionId = section.getAttribute('id')
+
+    //checkpointStart será 'true' se o checkpoint for MAIOR que o topo da sessão -> isso quer dizer que a sessão entrou na vista
+    const checkpointStart = checkpoint >= sectionTop
+    //checkpointEnd será 'true' se o checkpoint for MENOR que a soma do topo da sessão + a altura da sessão
+    const checkpointEnd = checkpoint <= sectionTop + sectionHeight
+
+    if (checkpointStart && checkpointEnd) {
+      //documento vai pegar o elemento <a> que tem um 'href' de valor que o sectionId tiver de valor (#home,#services, etc...)
+      document
+        .querySelector('nav ul li a[href*=' + sectionId + ']')
+        .classList.add('active')
+    } else {
+      document
+        .querySelector('nav ul li a[href*=' + sectionId + ']')
+        .classList.remove('active')
+    }
+  }
+}
+
 /* WHEN SCROLL */
 
 // adiciono evento de 'scroll' passando todas as funções que são de 'scroll'
 window.addEventListener('scroll', function () {
   changeHeaderWhenScroll()
   backToTop()
+  activateMenuAtCurrentSection()
 })
