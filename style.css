@@ -64,20 +64,19 @@ body {
 /* definindo atributos padrão dos botões com classe "button" */
 .button {
   background: var(--base-color);
-  color: var(--text-color);
+  color: var(--text-color-light);
   height: 3.5rem;
   display: inline-flex;
   align-items: center;
   padding: 0 2rem;
   border-radius: 0.25rem;
   font: 500 1rem var(--body-font);
-  transition: 0.3s; /* transição aplicada junto com ":hover"*/
+  transition: 0.4s; /* transição aplicada junto com ":hover"*/
 }
 
 /* definindo efeitos visuais ao passar o mouse em cima do botão */
 .button:hover {
-  background: var(--base-color-alt);
-  color: rgb(221, 221, 221);
+  background-color: hsl(var(--hue) 50% 60%);
 }
 
 /* inclusão de um divisor visual com cor gradiente */
@@ -168,7 +167,7 @@ body {
 /*-=-=-= LOGO -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 /* definindo letra e cor das letras do logo */
 .logo {
-  font: 700 1.31rem var(--title-font);
+  font: 700 1.3rem var(--title-font);
   color: var(--title-color);
 }
 
@@ -427,9 +426,21 @@ nav.show div.icon-close {
 .card {
   padding: 3.625rem 2rem;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
-  border-bottom: 0.25rem solid var(--base-color);
+  border-bottom: 0.12rem solid var(--base-color);
   border-radius: 0.25rem 0.25rem 0 0;
   text-align: center;
+}
+
+.card p,
+.card .title,
+.card i {
+  transition: 0.4s;
+}
+
+.card:hover p,
+.card:hover .title,
+.card:hover i {
+  transform: translateY(-15px);
 }
 
 /* definindo display do tipo block para ocupar a linha toda e definir seu tamanho
@@ -569,6 +580,40 @@ nav.show div.icon-close {
   color: var(--base-color);
 }
 
+#contact ul li a {
+  align-items: center;
+  color: var(--text-color);
+}
+
+.map-form {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.mapa {
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  height: 100%;
+  display: none;
+}
+
+form label {
+  display: grid;
+}
+
+form .button {
+  cursor: pointer;
+  border: none;
+}
+
+.input-padrao {
+  border-radius: 0.5rem;
+  border: solid 1px rgb(107, 107, 107);
+  margin: 1rem auto;
+  padding: 10px 25px;
+  width: 80%;
+}
+
 /*-=-=-= FOOTER -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 /* background do footer */
@@ -580,7 +625,7 @@ footer.section {
   padding: 4rem 0;
 }
 
-/* mudando display do <a> (".logo") para "inlin-block" para poder atribuir uma margem */
+/* mudando display do <a> (".logo") para "inline-block" para poder atribuir uma margem */
 footer .logo {
   display: inline-block;
   margin-bottom: 1.5rem;
@@ -588,6 +633,7 @@ footer .logo {
 
 /* mudando cor dos <p> da primeira <div> do <footer> e distanciando um pouco mais os <p>s */
 footer .brand p {
+  font-size: 0.7rem;
   color: var(--text-color-light);
   margin-bottom: 0.75rem;
 }
@@ -620,6 +666,7 @@ footer .social a:hover i {
 
 /* classe para o botão de "voltar ao topo" */
 .back-to-top {
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
   background-color: var(--base-color);
   color: var(--text-color-light);
   /* posicionamento para ficar fixo na página */
@@ -629,7 +676,8 @@ footer .social a:hover i {
   /* espaçamento interno maior */
   padding: 0.7rem;
   /* arredondar os cantos */
-  clip-path: circle();
+  /*clip-path: circle();*/
+  border-radius: 50%;
 
   font-size: 1rem;
   line-height: 0;
@@ -637,12 +685,16 @@ footer .social a:hover i {
   visibility: hidden;
   opacity: 0;
   /* dando uma transição ao aparecer e tudo mais */
-  transition: 0.3s;
+  transition: all 0.3s;
   /* transform com translate, que permite mexer nos 'eixos', nesse caso vamos mexer apenas o Y (pq queremos trazer de baixo para cima) 
   
   com: translate(100%) ele pega o tamanho do botão e mexe 100% do tamanho dele no eixo Y 
   */
   transform: translateY(100%);
+}
+
+.back-to-top:hover {
+  background-color: hsl(var(--hue) 50% 60%);
 }
 
 .back-to-top.show {
@@ -666,6 +718,152 @@ footer .social a:hover i {
     max-width: 1120px;
     margin-left: auto;
     margin-right: auto;
+  }
+  /* tem diferença da distancia do padding em relação ao mobile */
+  .section {
+    padding: 10rem 0;
+  }
+  /* limitando tamanho e corrigindo alinhamento do header das sections que possuem um */
+  .section header,
+  #testimonials header {
+    max-width: 32rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .button {
+    height: 3.125rem;
+  }
+
+  /* navigation */
+  #header .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  nav .menu ul {
+    display: flex;
+    gap: 2rem; /* gap destravado com o uso do display: flex */
+  }
+
+  nav .menu ul li a.title {
+    font: 400 1rem var(--body-font);
+    /* fica com a fonte mais fininha ainda */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav .menu ul li a.title.active {
+    font-weight: bold;
+    /* o bold fica mais bold */
+    -webkit-font-smoothing: auto;
+  }
+
+  nav .icon-menu {
+    display: none;
+  }
+
+  /* layout */
+  main {
+    margin-top: var(--header-height);
+  }
+
+  /* HOME */
+
+  /* faz as <divs> dentro do container ficarem lado a lado com seu tamanho */
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  /* muda a ordem dos elementos que estão dentro de um pai=grid */
+  #home .image {
+    order: 1; /* order só funciona pq .image é filho de 'grid' */
+  }
+
+  #home .text {
+    order: 0; /* order só funciona pq .text é filho de 'grid' */
+    max-width: 24rem;
+    text-align: left;
+  }
+
+  /* about */
+  #about .container {
+    /* corrigindo maring com 'auto' para esquerda e direita */
+    margin: 0 auto;
+    grid-auto-flow: column;
+  }
+
+  /* services */
+  #services .container {
+    margin: 0 auto;
+  }
+  .cards {
+    /* '.cards' já está com com 'grid', o que libera o:
+        - grid-template-columns, que divide os filhos no decorrer da linha conforme especificamos:
+          - fr = fractions = peso na distribuição
+          - cada 'fr' que colocarmos vai dividir nessa quantidade de colunas
+    */
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /* corrigindo espaçamento interno */
+  .card {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  /* testimonials */
+
+  #testimonials .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* contact */
+  #contact .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+    align-items: center;
+  }
+
+  #contact .text {
+    max-width: 25rem;
+  }
+
+  .map-form .input-padrao {
+    width: 50%;
+  }
+
+  /* footer */
+  footer .section {
+    padding: 3.75rem 0;
+  }
+
+  footer .container {
+    margin-left: auto;
+    margin-right: auto;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .logo {
+    font-size: 1.575rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1120px;
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
   /* tem diferença da distancia do padding em relação ao mobile */
   .section {
@@ -744,6 +942,12 @@ footer .social a:hover i {
     grid-auto-flow: column;
   }
 
+  #about .image::before {
+    top: -16%;
+    left: -33%;
+    z-index: 0;
+  }
+
   /* services */
   .cards {
     /* '.cards' já está com com 'grid', o que libera o:
@@ -776,6 +980,20 @@ footer .social a:hover i {
     max-width: 25rem;
   }
 
+  #contact .map-form {
+    margin-top: 4rem;
+  }
+
+  #contact .mapa {
+    display: initial;
+    grid-row: 1;
+    height: 25rem;
+  }
+
+  #contact form {
+    grid-row: 2;
+  }
+
   /* footer */
   footer .section {
     padding: 3.75rem 0;
@@ -788,20 +1006,13 @@ footer .social a:hover i {
   }
 
   footer .logo {
-    font-size: 2.25rem;
-  }
-}
-/* large devides: 1023 > */
-@media (min-width: 1023px) {
-}
-/* extra large devides: 992 > */
-@media (min-width: 992px) {
-  :root {
-    --title-font-size: 2.25rem;
-    --subtitle-font-size: 1.25rem;
+    font-size: 1.575rem;
   }
 }
 
 /* medium devides: 767 > -> geralmente tablets */
 @media (min-width: 767px) {
+  .container:not(footer .container) {
+    text-align: center;
+  }
 }
